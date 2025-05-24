@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cursos</title>
+</head>
+<body>
+    <h1>Cursos</h1>
+    <ul>
+        {% for curso in cursos %}
+        <li>{{curso}}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'agregar_curso'%}">Crear nuevo curso</a>
+</body>
+</html>
