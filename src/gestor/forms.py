@@ -1,5 +1,16 @@
 from django import forms
-from .models import Curso, NotaAlumnoPorCurso
+from .models import Alumno, Curso, NotaAlumnoPorCurso
+
+class AlumnoForm(forms.ModelForm):
+    class Meta:
+        model = Alumno
+        fields = ['CUI', 'nombres', 'apellidos']
+    
+    def clean_CUI(self):
+        CUI = self.cleaned_data.get('CUI')
+        if Alumno.objects.filter(CUI=CUI).exists():
+            raise forms.ValidationError("El CUI ingresado ya EXISTE.")
+        return CUI
 
 class CursoForm(forms.ModelForm):
     class Meta:
@@ -28,7 +39,7 @@ class NotaForm(forms.ModelForm):
 
     # def clean_cui_alumno(self):
     #     cui = self.cleaned_data.get('cui_alumno')
-    #     if not Curso.objects.filter(cui=cui).exists()
+    #     if not Alumno.objects.filter(cui=cui).exists()
     #         raise forms.ValidationError("El alumno con este CUI no existe")
         
     #     return cui
