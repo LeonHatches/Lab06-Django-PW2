@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lista de Notas</title>
+    </head>
+
+    <body>
+        <h1>Lista de Notas</h1>
+        <ul>
+            {% for nota in notas %}
+                <li>
+                    <b>CUI</b> : {{ nota.alumno.CUI }}. <b>Alumno</b> : {{ nota.alumno.apellidos }}, {{ nota.alumno.nombres }}  -  
+                     <b>Curso</b>: {{ nota.curso.nombre }} - <b>Nota</b>: {{ nota.nota }}
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'subir_notas' %}">Subir notas</a>
+    </body>
+</html>

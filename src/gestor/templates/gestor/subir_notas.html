@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subir notas</title>
+    </head>
+
+    <body>
+        <h1>Subir notas</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar</button>
+        </form>
+        <a href="{% url 'lista_notas' %}">Ver todas las notas</a>
+    </body>
+</html>
+
