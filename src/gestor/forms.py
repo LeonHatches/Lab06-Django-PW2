@@ -28,5 +28,3 @@ class CursoForm(forms.ModelForm):
         if Curso.objects.filter(codigo=codigo).exists():
             raise forms.ValidationError("Código ya registrado")
         return codigo
-from .models import Alumno
-
