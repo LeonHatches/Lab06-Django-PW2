@@ -8,7 +8,7 @@ def crear_alumno(request):
 
         if form.is_valid():
             form.save()
-            return redirect('lista_alumno')
+            return redirect('lista_alumnos')
     else:
         form = AlumnoForm()
     
