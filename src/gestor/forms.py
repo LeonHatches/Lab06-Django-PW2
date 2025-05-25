@@ -34,12 +34,20 @@ class NotaForm(forms.ModelForm):
 
     class Meta:
         model =  NotaAlumnoPorCurso
-        # fields = ["cui_alumno", "curso", "nota"]
-        fields = ["curso", "nota"]
+        fields = ["cui_alumno", "curso", "nota"]
 
-    # def clean_cui_alumno(self):
-    #     cui = self.cleaned_data.get('cui_alumno')
-    #     if not Alumno.objects.filter(cui=cui).exists()
-    #         raise forms.ValidationError("El alumno con este CUI no existe")
+    def clean_cui_alumno(self):
+        cui = self.cleaned_data.get('cui_alumno')
+        if not Alumno.objects.filter(CUI=cui).exists():
+            raise forms.ValidationError("El alumno con este CUI no existe")
         
-    #     return cui
+        return cui
+
+    def save(self, commit = True):
+        cui = self.cleaned_data.get('cui_alumno')
+        alumno = Alumno.objects.get(CUI = cui)
+        nota = super().save(commit=False)
+        nota.alumno = alumno
+        if commit:
+            nota.save()
+        return nota
