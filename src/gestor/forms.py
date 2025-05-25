@@ -1,5 +1,16 @@
 from django import forms
-from .models import Curso
+from .models import Alumno, Curso
+
+class AlumnoForm(forms.ModelForm):
+    class Meta:
+        model = Alumno
+        fields = ['CUI', 'nombres', 'apellidos']
+    
+    def clean_CUI(self):
+        CUI = self.cleaned_data.get('CUI')
+        if Alumno.objects.filter(CUI=CUI).exists():
+            raise forms.ValidationError("El CUI ingresado ya EXISTE.")
+        return CUI
 
 class CursoForm(forms.ModelForm):
     class Meta:
@@ -17,3 +28,5 @@ class CursoForm(forms.ModelForm):
         if Curso.objects.filter(codigo=codigo).exists():
             raise forms.ValidationError("Código ya registrado")
         return codigo
+from .models import Alumno
+
