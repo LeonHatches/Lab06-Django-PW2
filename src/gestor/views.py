@@ -11,11 +11,11 @@ def agregar_curso(request):
             return redirect('lista_cursos')
     else:
         form = CursoForm()
-    return render(request, "agregar_curso.html", {"form": form})
+    return render(request, "gestor/agregar_curso.html", {"form": form})
 
 def lista_cursos(request):
     cursos = Curso.objects.all()
-    return render(request, 'lista_cursos.html', {"cursos": cursos})
+    return render(request, 'gestor/lista_cursos.html', {"cursos": cursos})
 
 
 def crear_alumno(request):
