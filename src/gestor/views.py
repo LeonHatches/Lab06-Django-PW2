@@ -49,3 +49,6 @@ def subir_notas(request):
 def lista_notas(request):
     notas = NotaAlumnoPorCurso.objects.all()
     return render(request, 'gestor/lista_notas.html', {'notas':notas})
+
+def index(request):
+    return render(request, 'gestor/index.html')
