@@ -13,4 +13,7 @@ def crear_alumno(request):
         form = AlumnoForm()
     
     return render(request, 'gestor/crear_alumno.html', {'form':form})
-        
+
+def lista_alumnos(request):
+    alumnos = Alumno.objects.all()
+    return render(request, 'gestor/lista_alumnos.html', {'alumnos': alumnos})        
